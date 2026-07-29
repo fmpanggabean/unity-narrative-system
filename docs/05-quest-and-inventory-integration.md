@@ -42,3 +42,20 @@ public bool IsChoiceAvailable(DialogueChoice choice)
     return StoryStateManager.Instance.GetFlag(choice.requiredConditionFlag);
 }
 ```
+
+---
+
+## Langkah Setup Story State Manager & Condition Checking di Unity Editor
+
+1. **Membuat Manager GameObject di Scene**:
+   - Di Hierarchy, klik kanan -> **Create Empty** (Beri nama `StoryStateManager`).
+   - Attach script `StoryStateManager.cs` ke GameObject tersebut. Komponen ini bekerja sebagai DontDestroyOnLoad Singleton.
+
+2. **Mengatur Condition Flag pada Dialogue Choice Asset**:
+   - Buka file asset `DialogueNodeSO` yang memiliki pilihan khusus (misal: opsi berdagang yang hanya aktif jika player punya kunci/gold).
+   - Pada pilihan tersebut di Inspector, isi string kolom **Required Condition Flag**, misalnya `has_village_key`.
+   - Tombol pilihan tersebut hanya akan muncul di layar jika flag `has_village_key` bernilai `true` pada `StoryStateManager`.
+
+3. **Mengubah Flag Otomatis saat Percakapan Selesai/Dimulai**:
+   - Pada Inspector `DialogueNodeSO`, isi kolom **Set Story Flag On Reach** (misalnya `met_elder_once`).
+   - Saat node percakapan tersebut ditampilkan kepada player, `DialogueManager` akan secara otomatis memanggil `StoryStateManager.Instance.SetFlag("met_elder_once", true)`.

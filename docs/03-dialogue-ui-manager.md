@@ -85,3 +85,34 @@ public class DialogueManager : MonoBehaviour
     }
 }
 ```
+
+---
+
+## Langkah Setup UI Canvas & Dialogue Manager di Unity Editor
+
+Berikut adalah panduan langkah demi langkah menyusun UI Canvas di Unity Scene dari nol:
+
+1. **Membuat UI Canvas & Dialogue Panel**:
+   - Di tab **Hierarchy Window**, klik kanan -> **UI > Canvas** (Beri nama `DialogueCanvas`).
+   - Ubah `Canvas Scaler` pada Inspector ke **Scale With Screen Size** (misal resolusi 1920x1080).
+   - Klik kanan pada `DialogueCanvas` -> **UI > Panel** (Beri nama `DialoguePanel`). Ubah posisinya ke bagian bawah layar (Anchor: Bottom-Center).
+
+2. **Menambahkan Komponen Teks & Gambar**:
+   - Klik kanan pada `DialoguePanel` -> **UI > Text - TextMeshPro** (Beri nama `SpeakerNameText`). Posisikan di bagian kiri atas panel dialog.
+   - Klik kanan pada `DialoguePanel` -> **UI > Image** (Beri nama `PortraitImage`). Posisikan di samping panel dialog untuk menampilkan foto ekspresi karakter.
+   - Klik kanan pada `DialoguePanel` -> **UI > Text - TextMeshPro** (Beri nama `DialogueText`). Atur posisinya di tengah panel untuk menampilkan isi percakapan.
+
+3. **Membuat GameObject Manager & Attach Components**:
+   - Klik kanan di Hierarchy -> **Create Empty** (Beri nama `DialogueManager`).
+   - Attach script `DialogueManager.cs` dan `TypewriterEffect.cs` ke GameObject `DialogueManager` tersebut.
+   - Attach komponen `AudioSource` jika Anda ingin menggunakan efek suara pengetikan.
+
+4. **Menghubungkan Reference pada Inspector**:
+   - Pilih GameObject `DialogueManager` di Hierarchy.
+   - Pada Inspector `Typewriter Effect`:
+     - Drag & Drop `DialogueText` ke slot **Text Container**.
+   - Pada Inspector `Dialogue Manager`:
+     - Drag `DialoguePanel` ke slot **Dialogue Panel**.
+     - Drag `SpeakerNameText` ke slot **Speaker Name Text**.
+     - Drag `PortraitImage` ke slot **Portrait Image**.
+     - Drag GameObject `DialogueManager` sendiri ke slot **Typewriter**.

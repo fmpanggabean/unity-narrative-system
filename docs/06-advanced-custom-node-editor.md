@@ -50,6 +50,22 @@ public class DialogueGraphWindow : EditorWindow
 
 ---
 
+## Panduan Menggunakan Custom Editor Window di Unity Editor
+
+1. **Memastikan Script Berada di Folder Editor**:
+   - Pastikan file `DialogueGraphWindow.cs`, `DialogueGraphView.cs`, dan `DialogueNodeView.cs` berada di bawah direktori `Assets/NarrativeSystem/Editor/` agar terkompilasi khusus untuk lingkungan Unity Editor.
+
+2. **Membuka Window Editor**:
+   - Di Unity Bar Top Menu paling atas, klik menu **Tools > Narrative System > Dialogue Graph Editor**.
+   - Window editor visual baru akan terbuka (bisa di-docking di samping Scene view atau Inspector).
+
+3. **Navigasi Visual Graph Canvas**:
+   - **Zoom**: Gunakan Scroll Wheel mouse untuk zoom in / zoom out pada grid canvas.
+   - **Pan Canvas**: Tahan tombol tengah Mouse (Scroll Click) / Alt + Klik Kiri untuk menggeser (panning) area canvas editor.
+   - **Multi-select**: Tahan Klik Kiri dan drag untuk membuat kotak seleksi area (Rectangle Selection).
+
+---
+
 ## Kesimpulan Course
 
 Selamat! Anda telah menyelesaikan modul dasar hingga tingkat lanjut untuk membangun **Narrative System di Unity Engine**. Dengan arsitektur yang modular ini, project game Anda siap untuk mendukung cerita yang kaya dan bercabang.

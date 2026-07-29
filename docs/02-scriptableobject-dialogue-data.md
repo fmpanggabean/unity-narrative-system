@@ -64,3 +64,24 @@ public class DialogueNodeSO : ScriptableObject
 ## Keuntungan Menggunakan ScriptableObject
 - **Reusability**: Character profile dan dialogue node dapat digunakan kembali di berbagai scene.
 - **Designer Friendly**: Narrative designer dapat mengedit dialog melalui Unity Inspector tanpa perlu mengubah kode C#.
+
+---
+
+## Panduan Praktis di Unity Editor
+
+Berikut adalah langkah demi langkah membuat data dialog melalui Unity Editor setelah script C# di atas disimpan:
+
+1. **Membuat Profil Karakter**:
+   - Di tab **Project Window**, masuk ke folder `Assets/NarrativeSystem/Data/`.
+   - Klik kanan di area kosong, lalu pilih menu **Create > Narrative System > Character Profile**.
+   - Beri nama asset, misalnya `Player_Profile` atau `NPC_Elder`.
+   - Pilih asset tersebut, lalu pada **Inspector Window**, isi nama karakter, pilih sprite portrait, dan tentukan warna nama.
+
+2. **Membuat Dialogue Nodes**:
+   - Klik kanan di Project Window, pilih **Create > Narrative System > Dialogue Node**.
+   - Beri nama asset, misalnya `Node_Intro_01`, `Node_Choice_Accept`, atau `Node_Choice_Refuse`.
+   - Pada Inspector:
+     - Drag & Drop `Character Profile` yang telah dibuat ke slot **Speaker**.
+     - Tuliskan teks percakapan pada kolom **Dialogue Text**.
+     - Jika dialog ini linier (tanpa cabang pilihan), drag & drop node berikutnya ke slot **Default Next Node**.
+     - Jika dialog memiliki pilihan cabang, tambahkan item baru pada list **Choices**, isi teks pilihan, dan hubungkan **Target Node** tujuannya.
