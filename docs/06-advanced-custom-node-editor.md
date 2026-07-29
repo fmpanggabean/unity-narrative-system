@@ -53,3 +53,11 @@ public class DialogueGraphWindow : EditorWindow
 ## Kesimpulan Course
 
 Selamat! Anda telah menyelesaikan modul dasar hingga tingkat lanjut untuk membangun **Narrative System di Unity Engine**. Dengan arsitektur yang modular ini, project game Anda siap untuk mendukung cerita yang kaya dan bercabang.
+
+---
+
+## Referensi File Script pada Unity Project
+Seluruh implementasi koding custom editor pada modul ini dapat diakses langsung pada direktori proyek Unity:
+- [DialogueGraphView.cs](file:///c:/Workspaces/course/unity-narrative-system/unity-narrative-project/Assets/NarrativeSystem/Editor/DialogueGraphView.cs)
+- [DialogueNodeView.cs](file:///c:/Workspaces/course/unity-narrative-system/unity-narrative-project/Assets/NarrativeSystem/Editor/DialogueNodeView.cs)
+- [DialogueGraphWindow.cs](file:///c:/Workspaces/course/unity-narrative-system/unity-narrative-project/Assets/NarrativeSystem/Editor/DialogueGraphWindow.cs)

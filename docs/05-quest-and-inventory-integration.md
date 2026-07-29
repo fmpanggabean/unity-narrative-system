@@ -42,3 +42,10 @@ public bool IsChoiceAvailable(DialogueChoice choice)
     return StoryStateManager.Instance.GetFlag(choice.requiredConditionFlag);
 }
 ```
+
+---
+
+## Referensi File Script pada Unity Project
+Seluruh implementasi koding pada modul ini dapat diakses langsung pada direktori proyek Unity:
+- [StoryStateManager.cs](file:///c:/Workspaces/course/unity-narrative-system/unity-narrative-project/Assets/NarrativeSystem/Scripts/Core/StoryStateManager.cs)
+```
