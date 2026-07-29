@@ -64,11 +64,3 @@ public class DialogueNodeSO : ScriptableObject
 ## Keuntungan Menggunakan ScriptableObject
 - **Reusability**: Character profile dan dialogue node dapat digunakan kembali di berbagai scene.
 - **Designer Friendly**: Narrative designer dapat mengedit dialog melalui Unity Inspector tanpa perlu mengubah kode C#.
-
----
-
-## Referensi File Script pada Unity Project
-Seluruh implementasi koding pada modul ini dapat diakses langsung pada direktori proyek Unity:
-- [CharacterProfileSO.cs](file:///c:/Workspaces/course/unity-narrative-system/unity-narrative-project/Assets/NarrativeSystem/Scripts/Data/CharacterProfileSO.cs)
-- [DialogueChoice.cs](file:///c:/Workspaces/course/unity-narrative-system/unity-narrative-project/Assets/NarrativeSystem/Scripts/Data/DialogueChoice.cs)
-- [DialogueNodeSO.cs](file:///c:/Workspaces/course/unity-narrative-system/unity-narrative-project/Assets/NarrativeSystem/Scripts/Data/DialogueNodeSO.cs)

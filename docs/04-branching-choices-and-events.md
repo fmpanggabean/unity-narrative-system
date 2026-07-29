@@ -56,11 +56,3 @@ public class DialogueNodeWithEvents : DialogueNodeSO
     public UnityEvent onNodeReached;
 }
 ```
-
----
-
-## Referensi File Script pada Unity Project
-Seluruh implementasi koding pada modul ini dapat diakses langsung pada direktori proyek Unity:
-- [ChoiceUIHandler.cs](file:///c:/Workspaces/course/unity-narrative-system/unity-narrative-project/Assets/NarrativeSystem/Scripts/UI/ChoiceUIHandler.cs)
-- [DialogueTrigger.cs](file:///c:/Workspaces/course/unity-narrative-system/unity-narrative-project/Assets/NarrativeSystem/Scripts/UI/DialogueTrigger.cs)
-```

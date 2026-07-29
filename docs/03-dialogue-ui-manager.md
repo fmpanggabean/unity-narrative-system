@@ -85,11 +85,3 @@ public class DialogueManager : MonoBehaviour
     }
 }
 ```
-
----
-
-## Referensi File Script pada Unity Project
-Seluruh implementasi koding pada modul ini dapat diakses langsung pada direktori proyek Unity:
-- [TypewriterEffect.cs](file:///c:/Workspaces/course/unity-narrative-system/unity-narrative-project/Assets/NarrativeSystem/Scripts/Core/TypewriterEffect.cs)
-- [DialogueManager.cs](file:///c:/Workspaces/course/unity-narrative-system/unity-narrative-project/Assets/NarrativeSystem/Scripts/Core/DialogueManager.cs)
-```
