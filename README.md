@@ -41,3 +41,11 @@ Setelah menyelesaikan course ini, Anda akan mampu:
 - Pemahaman dasar Unity Engine (disarankan versi Unity 2021.3 LTS atau yang lebih baru).
 - Pengetahuan dasar pemrograman C# (Class, Inheritance, List, Event/Delegate).
 - Package TextMeshPro sudah terinstall di Unity Project Anda.
+
+---
+
+## Asset Credits & References
+
+Proyek sampel Unity pada course ini menggunakan aset UI gratis sebagai berikut:
+- **Kenney UI Pack (Pixel Adventure)**: [https://kenney.nl/assets/ui-pack-pixel-adventure](https://kenney.nl/assets/ui-pack-pixel-adventure)  
+  Lisensi: CC0 1.0 Universal (Public Domain). Dibuat oleh Kenney.

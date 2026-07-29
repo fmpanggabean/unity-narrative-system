@@ -29,6 +29,15 @@ File `.gitignore` di akar repositori telah dikonfigurasi untuk mengabaikan folde
 - `Obj/`
 - `Build/` / `Builds/`
 - `Logs/`
+
+---
+
+## Asset Credits
+
+Aset UI yang digunakan dalam proyek ini:
+- **Kenney UI Pack (Pixel Adventure)**  
+  URL: [https://kenney.nl/assets/ui-pack-pixel-adventure](https://kenney.nl/assets/ui-pack-pixel-adventure)  
+  Lisensi: CC0 1.0 Universal (Public Domain). Karya oleh Kenney.
 - `UserSettings/`
 - File Project Visual Studio / Rider (`*.csproj`, `*.sln`)
 

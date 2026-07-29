@@ -39,3 +39,9 @@ Dialogue terstruktur sebagai **Node** yang terhubung melalui edge atau target re
 
 ## Kesimpulan
 Sepanjang course ini, kita akan fokus pada **Node-Based Data Architecture** memanfaatkan **ScriptableObject** dan **Unity GraphView**, sehingga menghasilkan dialogue framework yang sangat fleksibel dan extensible.
+
+---
+
+## Sample Assets & Credits
+Untuk keperluan contoh proyek dan latihan visual UI di Unity:
+- **Kenney UI Pack (Pixel Adventure)**: [https://kenney.nl/assets/ui-pack-pixel-adventure](https://kenney.nl/assets/ui-pack-pixel-adventure) (Lisensi CC0 Public Domain oleh Kenney).
