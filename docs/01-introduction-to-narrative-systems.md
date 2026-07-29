@@ -1,47 +1,49 @@
 # Modul 1: Pengantar Narrative System di Unity
 
-Narrative System adalah salah satu core pillar dalam modern game development, khususnya pada genre seperti RPG, Adventure, Interactive Fiction, dan Visual Novel. Pada modul ini, kita akan mempelajari konsep dasar architectural pattern dari narrative system sebelum masuk ke implementasi teknis C#.
+Saat membangun game berbasis cerita—seperti RPG, Adventure, atau Visual Novel—narrative system menjadi pondasi utama yang menghubungkan pemain dengan dunia game. Sebelum langsung menulis kode C#, penting untuk memahami gambaran besar arsitektur sistem dialog agar kode yang disusun tetap rapi dan mudah dikembangkan.
 
 ---
 
 ## Apa itu Narrative System?
 
-Narrative System bukan sekadar menampilkan teks di layar. Ini adalah sekumpulan sistem terinterkoneksi untuk menyampaikan cerita, yang terdiri dari:
+Dalam pengembangan game, sistem naratif tidak sekadar menampilkan kotak teks sederhana di layar. Sistem ini merupakan gabungan beberapa komponen yang saling bekerja sama:
 
-1. **Dialogue Engine**: Mengontrol alur dan urutan dialogue lines yang ditampilkan.
-2. **Character & Audio System**: Menampilkan nama karakter, portrait, serta memicu voiceover atau sound effects (SFX).
-3. **Choice & Branching System**: Memberikan pilihan kepada player yang menentukan arah alur cerita.
-4. **State Engine / Condition Checker**: Memeriksa world state (misalnya, apakah item sudah diambil atau NPC sudah diajak bicara).
+1. **Dialogue Engine**: Mengatur giliran dan alur percakapan yang dimunculkan.
+2. **Character & Audio System**: Menampilkan identitas pembicara, foto profil (portrait), serta memicu efek suara/voiceover.
+3. **Choice & Branching System**: Membuka cabang pilihan bagi pemain yang dapat mengubah alur cerita.
+4. **State Engine / Condition Checker**: Memeriksa kondisi game (misalnya apakah pemain sudah memiliki kunci atau pernah mengalahkan boss tertentu).
 
 ---
 
-## Pattern Arsitektur Narrative System
+## Memilih Arsitektur yang Tepat
 
-Secara umum, terdapat dua pendekatan arsitektur utama di Unity:
+Secara garis besar, ada dua pendekatan utama yang sering digunakan di Unity:
 
 ### 1. Sequential / Linear List Pattern
-Dialogue lines disimpan secara sekuensial sebagai `List<DialogueLine>`. Sangat cocok untuk game linear tanpa branching paths.
+Semua baris dialog disimpan berurutan dalam sebuah daftar (`List<DialogueLine>`). Pendekatan ini sangat simpel dan cocok untuk dialog linier tanpa cabang pilihan.
 
-```
-[Line 1] -> [Line 2] -> [Line 3] -> [End]
+```text
+[Line 1] -> [Line 2] -> [Line 3] -> [Selesai]
 ```
 
 ### 2. Graph / Tree Pattern (Node-Based)
-Dialogue terstruktur sebagai **Node** yang terhubung melalui edge atau target reference. Ideal untuk branching RPG dan decision tree yang kompleks.
+Dialog dipecah menjadi beberapa **Node** independen yang saling terhubung. Pendekatan ini adalah standar industri untuk RPG bercabang karena memudahkan pengaturan pilihan dan percabangan cerita yang kompleks.
 
-```
-          +-> [Node Choice A] -> [Node A1]
+```text
+          +-> [Pilihan A] -> [Node A1]
 [Node 1] -|
-          +-> [Node Choice B] -> [Node B1]
+          +-> [Pilihan B] -> [Node B1]
 ```
 
 ---
 
-## Kesimpulan
-Sepanjang course ini, kita akan fokus pada **Node-Based Data Architecture** memanfaatkan **ScriptableObject** dan **Unity GraphView**, sehingga menghasilkan dialogue framework yang sangat fleksibel dan extensible.
+## Pendekatan yang Kita Gunakan
+
+Sepanjang materi ini, kita fokus membangun **Node-Based Data Architecture** memanfaatkan **ScriptableObject** dan **Unity GraphView**. Pendekatan ini dipilih karena membuat data cerita terpisah dari logika game, sehingga mudah diatur oleh narrative designer tanpa perlu mengedit skrip C#.
 
 ---
 
 ## Sample Assets & Credits
-Untuk keperluan contoh proyek dan latihan visual UI di Unity:
-- **Kenney UI Pack (Pixel Adventure)**: [https://kenney.nl/assets/ui-pack-pixel-adventure](https://kenney.nl/assets/ui-pack-pixel-adventure) (Lisensi CC0 Public Domain oleh Kenney).
+
+Untuk mempermudah latihan visual UI selama mengikuti materi ini, kita menggunakan aset UI gratis:
+- **Kenney UI Pack (Pixel Adventure)**: [https://kenney.nl/assets/ui-pack-pixel-adventure](https://kenney.nl/assets/ui-pack-pixel-adventure) (Lisensi Public Domain CC0 oleh Kenney).

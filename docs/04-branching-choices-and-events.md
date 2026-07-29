@@ -1,41 +1,55 @@
 # Modul 4: Branching Dialogue & Event System
 
-Pada modul ini, kita akan menambahkan dukungan narrative branching melalui pilihan tombol (Dialogue Choices UI) dan memicu external game events.
+Game yang menarik sering memberi kebebasan pada pemain untuk menentukan pilihan cerita. Di modul ini, kita akan menambahkan sistem pilihan percabangan yang dibuat secara dinamis di layar, serta mekanisme memicu event dalam game (seperti memulai quest, bertarung, atau memberikan item) langsung dari dialog.
 
 ---
 
-## Dynamic Choice Button Instantiation
+## Membuat Tombol Pilihan Secara Dinamis (`ChoiceUIHandler.cs`)
 
-Ketika sebuah dialogue node memiliki opsi pilihan (`choices.Count > 0`), choice buttons akan di-instantiate secara dinamis.
+Jumlah pilihan pada setiap node dialog bisa berbeda-beda (ada yang memiliki 2 pilihan, 3 pilihan, atau tanpa pilihan sama sekali). Oleh karena itu, tombol UI pilihan di-instantiate secara dinamis sesuai kebutuhan node yang sedang aktif.
 
 ```csharp
+using System;
 using System.Collections.Generic;
+using NarrativeSystem.Data;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-public class ChoiceUIHandler : MonoBehaviour
+namespace NarrativeSystem.UI
 {
-    [SerializeField] private GameObject choiceButtonPrefab;
-    [SerializeField] private Transform choiceButtonContainer;
-
-    public void RenderChoices(List<DialogueChoice> choices, System.Action<DialogueChoice> onChoiceSelected)
+    public class ChoiceUIHandler : MonoBehaviour
     {
-        // Hapus button sebelumnya
-        foreach (Transform child in choiceButtonContainer)
+        [SerializeField] private GameObject choiceButtonPrefab;
+        [SerializeField] private Transform choiceButtonContainer;
+
+        public void RenderChoices(List<DialogueChoice> choices, Action<DialogueChoice> onChoiceSelected)
         {
-            Destroy(child.gameObject);
+            ClearChoices();
+
+            foreach (var choice in choices)
+            {
+                GameObject btnObj = Instantiate(choiceButtonPrefab, choiceButtonContainer);
+                TextMeshProUGUI label = btnObj.GetComponentInChildren<TextMeshProUGUI>();
+                if (label != null) label.text = choice.choiceText;
+
+                Button btn = btnObj.GetComponent<Button>();
+                if (btn != null)
+                {
+                    btn.onClick.AddListener(() => {
+                        onChoiceSelected?.Invoke(choice);
+                    });
+                }
+            }
         }
 
-        // Spawn choice button baru
-        foreach (var choice in choices)
+        public void ClearChoices()
         {
-            GameObject btnObj = Instantiate(choiceButtonPrefab, choiceButtonContainer);
-            btnObj.GetComponentInChildren<TextMeshProUGUI>().text = choice.choiceText;
-            
-            btnObj.GetComponent<Button>().onClick.AddListener(() => {
-                onChoiceSelected?.Invoke(choice);
-            });
+            if (choiceButtonContainer == null) return;
+            foreach (Transform child in choiceButtonContainer)
+            {
+                Destroy(child.gameObject);
+            }
         }
     }
 }
@@ -43,9 +57,9 @@ public class ChoiceUIHandler : MonoBehaviour
 
 ---
 
-## Memicu Game Events dari Dialogue Node
+## Memicu Game Event dari Node Dialog
 
-Kita dapat memicu `UnityEvent` atau `C# Action` ketika mencapai dialogue node tertentu (misalnya: memicu cutscene, memulai combat, atau mengubah status reputasi).
+Selain memunculkan teks, node dialog juga bisa memicu `UnityEvent` saat percakapan dicapai. Hal ini berguna untuk memicu reaksi di dunia game seperti mengubah animasi karakter, memainkan cutscene, atau menambah quest.
 
 ```csharp
 using UnityEngine.Events;
@@ -59,21 +73,24 @@ public class DialogueNodeWithEvents : DialogueNodeSO
 
 ---
 
-## Langkah Setup Choice UI & Dialogue Trigger di Unity Editor
+## Panduan Langkah Demi Langkah di Unity Editor
+
+Mari kita pasang sistem tombol pilihan dan pemicu dialog di scene:
 
 1. **Membuat Choice Button Prefab**:
-   - Di Hierarchy, klik kanan -> **UI > Button - TextMeshPro** (Beri nama `ChoiceButtonPrefab`).
-   - Sesuaikan ukuran tombol, background sprite (misal menggunakan sprite dari Kenney UI Pack), dan font size pada anak komponen TextMeshPro.
-   - Drag GameObject `ChoiceButtonPrefab` tersebut dari Hierarchy ke Project Window (folder `Assets/NarrativeSystem/Prefabs/`) untuk menjadikannya Asset Prefab. Hapus GameObject tersebut dari Hierarchy setelah prefab terbentuk.
+   - Di **Hierarchy Window**, klik kanan -> **UI > Button - TextMeshPro** (Beri nama `ChoiceButtonPrefab`).
+   - Atur tampilan tombol (ukuran, gambar tombol, dan ukuran teks).
+   - Geser (drag) GameObject `ChoiceButtonPrefab` dari Hierarchy ke folder `Assets/NarrativeSystem/Prefabs/` di Project Window untuk menjadikannya Prefab.
+   - Hapus GameObject `ChoiceButtonPrefab` yang ada di Hierarchy.
 
-2. **Membuat Choice Container & Attach Component**:
-   - Klik kanan pada `DialoguePanel` di Hierarchy -> **UI > Panel / Vertical Layout Group** (Beri nama `ChoiceContainer`).
-   - Attach script `ChoiceUIHandler.cs` ke GameObject `ChoiceContainer`.
-   - Pada Inspector `ChoiceUIHandler`, masukkan `ChoiceButtonPrefab` dari Project Window ke slot **Choice Button Prefab**, dan masukkan `ChoiceContainer` sendiri ke slot **Choice Button Container**.
-   - Hubungkan GameObject `ChoiceContainer` ke slot **Choice Handler** pada `DialogueManager`.
+2. **Menyiapkan Choice Container**:
+   - Klik kanan pada `DialoguePanel` -> **UI > Panel** (Beri nama `ChoiceContainer`). Tambahkan komponen `Vertical Layout Group` agar tombol tersusun rapi secara vertikal.
+   - Pasang skrip `ChoiceUIHandler.cs` ke GameObject `ChoiceContainer`.
+   - Geser file `ChoiceButtonPrefab` dari Project Window ke kolom slot **Choice Button Prefab**.
+   - Pada komponen `DialogueManager`, hubungkan GameObject `ChoiceContainer` ke slot **Choice Handler**.
 
-3. **Membuat NPC Dialogue Trigger di Scene**:
-   - Klik kanan di Hierarchy -> **Create Empty** / **2D Object > Sprites > Square** (Beri nama `NPC_Merchant`).
-   - Tambahkan komponen `BoxCollider2D` atau `BoxCollider`. Centang opsi **Is Trigger**.
-   - Attach script `DialogueTrigger.cs` ke GameObject NPC.
-   - Pada Inspector `DialogueTrigger`, tarik file `DialogueNodeSO` awal yang ingin diputar pertama kali ke slot **Starting Dialogue Node**.
+3. **Membuat Trigger Dialog di Scene (NPC)**:
+   - Klik kanan di Hierarchy -> **Create Empty** atau **2D Object > Sprites > Square** (Beri nama `NPC_Merchant`).
+   - Tambahkan komponen `BoxCollider2D` (atau `BoxCollider`), lalu centang opsi **Is Trigger**.
+   - Pasang skrip `DialogueTrigger.cs` ke GameObject NPC tersebut.
+   - Pada Inspector `DialogueTrigger`, masukkan aset `DialogueNodeSO` pembuka yang ingin diputar saat pemain mendekat.
