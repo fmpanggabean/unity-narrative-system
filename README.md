@@ -4,6 +4,9 @@ Selamat datang di course komprehensif tentang **Pembuatan Narrative & Dialogue S
 
 Course ini dirancang untuk membimbing Anda dari konsep dasar penulisan interactive narrative hingga membangun branching dialogue system yang modular, scalable, dan terintegrasi dengan game mechanics di Unity.
 
+Dokumentasi lengkap course ini dapat diakses melalui GitBook:  
+**[Unity Narrative System GitBook](https://fm-panggabean.gitbook.io/unity-narrative-system/)**
+
 ---
 
 ## Learning Objectives
